@@ -1,8 +1,12 @@
+html {
+    height: 100%;
+}
+
 body {
     position: relative;
-    width: 100vw;
-    height: 100vw;
-    margin: 0 auto;
+    min-height: 100%;
+    height: 100%;
+    background-color: lightgreen;
 }
 
 .flex-box-col {
@@ -10,11 +14,13 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: space-around;
-    height: 100vw;
+    min-height: 100%;
+    width: 100%;
 
 }
 
 h1 {
+    font-family: 'Oswald', sans-serif;
     font-size: 32px;
 }
 
@@ -33,7 +39,7 @@ h1 {
 }
 
 .player-side-left {
-    background-color: lightpink;
+    background-color: mistyrose;
 }
 
 .player-side-right {
@@ -42,7 +48,8 @@ h1 {
 
 /* BEGIN CHARACTER SELECT */
 
-.ul-character-select {
+.ul-player-select {
+    bottom: 0;
     display: flex;
     flex-wrap: wrap;
     width: 200px;
@@ -51,7 +58,7 @@ h1 {
     cursor: pointer;
 }
 
-.li-character-select {
+.li-player-select {
     display: block;
     width: 48px;
     height: 48px;
@@ -59,6 +66,6 @@ h1 {
     background-color: lightgrey;
 }
 
-.li-character-select:hover {
+.li-player-select:hover {
     background-color: lightslategray;
 }
