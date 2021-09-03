@@ -1,12 +1,46 @@
 body {
+    position: relative;
+    width: 100vw;
+    height: 100vw;
+    margin: 0 auto;
+}
+
+.flex-box-col {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
+    height: 100vw;
+
 }
 
 h1 {
     font-size: 32px;
 }
+
+/* BEGIN PLAYER SECTION */
+
+.player-container {
+    position: absolute;
+    z-index: -1;
+    display: flex;
+    height: 100%;
+    bottom: 0px;
+}
+
+.player-side {
+    width :50vw;
+}
+
+.player-side-left {
+    background-color: lightpink;
+}
+
+.player-side-right {
+    background-color: lightcyan;
+}
+
+/* BEGIN CHARACTER SELECT */
 
 .ul-character-select {
     display: flex;
@@ -22,9 +56,9 @@ h1 {
     width: 48px;
     height: 48px;
     border: 1px solid black;
-    background-color: lightcyan;
+    background-color: lightgrey;
 }
 
 .li-character-select:hover {
-    background-color: aqua;
+    background-color: lightslategray;
 }
