@@ -1,4 +1,3 @@
-## Project Title
 # VERSUS
 
 ## Background
@@ -12,7 +11,9 @@ In Versus, users will be able to:
 * view more in-depth data via user input
 
 ## Wireframe
-A rough draft mock-up image is located in the *about* folder.
+Below is a rough draft mock-up image.
+![Versus](/about/mockup.jpg)
+Format: ![Versus]
 
 ## Technologies, Libraries, APIs
 * D3 for rendering charts
