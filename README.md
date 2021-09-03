@@ -13,7 +13,6 @@ In Versus, users will be able to:
 ## Wireframe
 Below is a rough draft mock-up image.
 ![Versus](/about/mockup.jpg)
-Format: ![Versus]
 
 ## Technologies, Libraries, APIs
 * D3 for rendering charts
