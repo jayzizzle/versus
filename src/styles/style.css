@@ -13,12 +13,18 @@ h1 {
     font-family: 'Oswald', sans-serif;
     font-size: 72px;
     text-transform: uppercase;
+    padding: 5px;
 }
 
 h2 {
     font-family: 'Oswald', sans-serif;
     font-size: 42px;
     text-transform: uppercase;
+}
+
+h6 {
+    font-size: 24px;
+    font-style: italic;
 }
 
 .flex-box-col {
@@ -43,6 +49,7 @@ h2 {
 .player-side {
     width :50vw;
     display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
 }
@@ -86,4 +93,12 @@ h2 {
 .black-and-white {
   -webkit-filter: grayscale(100%);
   filter: grayscale(100%);
+}
+
+.left-selection {
+    background-color: lightpink;
+}
+
+.right-selection {
+    background-color: lightskyblue;
 }
