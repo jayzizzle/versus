@@ -35,14 +35,17 @@ class PlayerSelect {
     handleClick(e) {
         e.stopPropagation();
         let ele = e.target;
+        if (ele.tagName === 'LI') {
+            const oldLeftSelection = document.getElementsByClassName('left-selection');
 
-        const oldLeftSelection = document.getElementsByClassName('left-selection');
-        oldLeftSelection[0].classList.remove("left-selection");
+            if (oldLeftSelection[0])
+            oldLeftSelection[0].classList.remove("left-selection");
 
-        ele.classList.add('left-selection');
-        const artist = this.artists[ele.dataset.id];
-        this.leftSelection = artist;
-        this.hoverChain(ele);
+            ele.classList.add('left-selection');
+            const artist = this.artists[ele.dataset.id];
+            this.leftSelection = artist;
+            this.hoverChain(ele);
+        }
     }
 
     handleHover(e) {
@@ -59,10 +62,12 @@ class PlayerSelect {
 
     hoverChain(ele) {
         const artist = this.artists[ele.dataset.id];
-        const displayName = document.getElementById('left-player-name');
-        const displayAlias = document.getElementById('left-player-alias');
-        if (artist) displayName.innerHTML = artist.stageName;
-        if (artist) displayAlias.innerHTML = artist.alias;
+        if (artist) {
+            const displayName = document.getElementById('left-player-name');
+            const displayAlias = document.getElementById('left-player-alias');
+            displayName.innerHTML = artist.stageName;
+            displayAlias.innerHTML = artist.alias;
+        }
     }
 }
 
