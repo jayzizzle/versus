@@ -36,7 +36,12 @@ class PlayerSelect {
     handleClick(e) {
         e.stopPropagation();
         let ele = e.target;
-        if (ele.tagName === 'LI') {
+        if (ele.tagName === 'LI' && !this.isOppositeSelection(ele)) {
+
+            if (this.isAlreadySelected(ele)) {
+                this.toggleLock(ele);
+            }
+
             const oldSelection = document.getElementsByClassName(`${this.currentSide}-selection`);
             oldSelection[0].classList.remove(`${this.currentSide}-selection`);
             ele.classList.add(`${this.currentSide}-selection`);
@@ -47,8 +52,6 @@ class PlayerSelect {
             this.changeSelection(artist);
 
             this.hoverChain(ele);
-
-            this.lockSelection(ele);
         }
     }
 
@@ -73,6 +76,16 @@ class PlayerSelect {
         displayAlias.innerHTML = artist.alias;
     }
 
+    isOppositeSelection(ele) {
+        let oppSide;
+        this.currentSide === 'left' ? oppSide = 'right' : oppSide = 'left';
+        return ele.classList.contains(`${oppSide}-selection`);
+    }
+
+    isAlreadySelected(ele) {
+        return ele.classList.contains(`${this.currentSide}-selection`);
+    }
+
     switchCurrentSide() {
         if (this.currentSide === 'left') {
             this.currentSide = 'right';
@@ -89,8 +102,13 @@ class PlayerSelect {
         }
     }
 
-    lockSelection(ele) {
-        ele.innerHTML = '<i class="fas fa-lock"></i>'
+    toggleLock(ele) {
+        if (ele.innerHTML === '<i class="fas fa-lock"></i>') {
+            ele.innerHTML = '';
+        } else {
+            ele.innerHTML = '<i class="fas fa-lock"></i>'
+        }
+        console.log(ele)
     }
 }
 
