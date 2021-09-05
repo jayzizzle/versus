@@ -49,8 +49,7 @@ class PlayerSelect {
                 oldSelection.id = '';
                 ele.id = `${this.currentSide}-selection`;
                 
-                //check if opposite has lock
-                this.switchCurrentSide();
+                if (!this.isOppositeSideLocked()) this.switchCurrentSide();
 
                 const artist = this.artists[ele.dataset.id];
                 this.changeSelection(artist);
@@ -81,11 +80,14 @@ class PlayerSelect {
         displayAlias.innerHTML = artist.alias;
     }
 
-    isOppositeSelection(ele) {
+    getOppositeSide() {
         let oppSide;
         this.currentSide === 'left' ? oppSide = 'right' : oppSide = 'left';
-        // return ele.classList.contains(`${oppSide}-selection`);
+        return oppSide;
+    }
 
+    isOppositeSelection(ele) {
+        let oppSide = this.getOppositeSide();
         return ele.id === `${oppSide}-selection`;
     }
 
@@ -141,11 +143,9 @@ class PlayerSelect {
         numLocks === 2;
     }
     isOppositeSideLocked() {
-        ele = document.getElementById(`${this.currentSide}-selection`);
-        
-        if (this.currentSide) {
-
-        }
+        let oppSide = this.getOppositeSide();
+        ele = document.getElementById(`${oppSide}-selection`);
+        ele.hasChildNodes();
     }
 }
 
