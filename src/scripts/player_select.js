@@ -30,8 +30,9 @@ class PlayerSelect {
         displayRightAlias.innerHTML = this.rightSelection.alias;
 
         const list = document.getElementsByClassName('li-player-select');
-        list[this.leftSelection.id].classList.add('left-selection');
-        list[this.rightSelection.id].classList.add('right-selection');
+
+        list[this.leftSelection.id].id = 'left-selection';
+        list[this.rightSelection.id].id = 'right-selection';
     }
 
     handleClick(e) {
@@ -43,9 +44,10 @@ class PlayerSelect {
                 this.toggleLock(ele);
                 return;
             } else if (this.currentSide && !this.isOppositeSelection(ele)) {
-                const oldSelection = document.getElementsByClassName(`${this.currentSide}-selection`);
-                oldSelection[0].classList.remove(`${this.currentSide}-selection`);
-                ele.classList.add(`${this.currentSide}-selection`);
+
+                const oldSelection = document.getElementById(`${this.currentSide}-selection`);
+                oldSelection.id = '';
+                ele.id = `${this.currentSide}-selection`;
                 
                 //check if opposite has lock
                 this.switchCurrentSide();
@@ -60,7 +62,7 @@ class PlayerSelect {
         e.stopPropagation();
         let ele = e.target;
         
-        if (this.currentSide && ele.tagName === 'LI' && !this.isAlreadySelected(ele)) {
+        if (this.currentSide && ele.tagName === 'LI' && !this.isAlreadySelected(ele) && !this.isBothLocked()) {
             this.hoverChain(ele);
         }
     }
@@ -82,11 +84,13 @@ class PlayerSelect {
     isOppositeSelection(ele) {
         let oppSide;
         this.currentSide === 'left' ? oppSide = 'right' : oppSide = 'left';
-        return ele.classList.contains(`${oppSide}-selection`);
+        // return ele.classList.contains(`${oppSide}-selection`);
+
+        return ele.id === `${oppSide}-selection`;
     }
 
     isAlreadySelected(ele) {
-        if (ele.classList.contains('left-selection') || ele.classList.contains('right-selection')) {
+        if (ele.id === 'left-selection' || ele.id === 'right-selection') {
             return true;
         } else {
             return false;
@@ -94,7 +98,7 @@ class PlayerSelect {
     }
 
     isCurrentSideAlreadySelected(ele) {
-        return ele.classList.contains(`${this.currentSide}-selection`);
+        return ele.id === `${this.currentSide}-selection`;
     }
 
     switchCurrentSide() {
@@ -116,7 +120,7 @@ class PlayerSelect {
     toggleLock(ele) {
         if (ele.innerHTML) {
             ele.innerHTML = '';
-            if (ele.classList.contains('left-selection')) {
+            if (ele.id === 'left-selection') {
                 this.currentSide = 'left';
             } else {
                 this.currentSide = 'right';
@@ -125,15 +129,19 @@ class PlayerSelect {
             ele.innerHTML = '<i class="fas fa-lock"></i>'
             if (this.isCurrentSideAlreadySelected(ele)) {
                 this.switchCurrentSide();
-                let numLocks = document.getElementsByClassName('fa-lock').length;
-                if (numLocks > 1) {
+                if (this.isBothLocked()) {
                     this.currentSide = undefined;
                 }
             }
         }
     }
+    isBothLocked() {
+        let numLocks = document.getElementsByClassName('fa-lock').length;
+        if (numLocks === 2) this.currentSide = undefined;
+        numLocks === 2;
+    }
     isOppositeSideLocked() {
-        ele = document.getElementsByClassName(`${this.currentSide}-selection`);
+        ele = document.getElementById(`${this.currentSide}-selection`);
         
         if (this.currentSide) {
 

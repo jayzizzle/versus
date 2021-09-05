@@ -99,11 +99,11 @@ h6 {
   filter: grayscale(100%);
 }
 
-.left-selection {
+#left-selection {
     background-color: lightpink;
 }
 
-.right-selection {
+#right-selection {
     background-color: lightskyblue;
 }
 
