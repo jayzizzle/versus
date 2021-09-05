@@ -36,34 +36,36 @@ class PlayerSelect {
     handleClick(e) {
         e.stopPropagation();
         let ele = e.target;
-        if (ele.tagName === 'LI' && !this.isOppositeSelection(ele)) {
-
+        if (ele.tagName === 'I') ele = ele.parentNode;
+        if (ele.tagName === 'LI') {
             if (this.isAlreadySelected(ele)) {
                 this.toggleLock(ele);
+                return;
+            } else if (this.currentSide && !this.isOppositeSelection(ele)) {
+                const oldSelection = document.getElementsByClassName(`${this.currentSide}-selection`);
+                oldSelection[0].classList.remove(`${this.currentSide}-selection`);
+                ele.classList.add(`${this.currentSide}-selection`);
+                
+                //check if opposite has lock
+                this.switchCurrentSide();
+
+                const artist = this.artists[ele.dataset.id];
+                this.changeSelection(artist);
             }
-
-            const oldSelection = document.getElementsByClassName(`${this.currentSide}-selection`);
-            oldSelection[0].classList.remove(`${this.currentSide}-selection`);
-            ele.classList.add(`${this.currentSide}-selection`);
-            
-            this.switchCurrentSide();
-
-            const artist = this.artists[ele.dataset.id];
-            this.changeSelection(artist);
-
-            this.hoverChain(ele);
         }
     }
 
     handleHover(e) {
         e.stopPropagation();
         let ele = e.target;
-        if (ele.tagName === 'LI') this.hoverChain(ele);
+        
+        if (this.currentSide && ele.tagName === 'LI' && !this.isAlreadySelected(ele)) {
+            this.hoverChain(ele);
+        }
     }
 
     handleOffHover(e) {
         e.stopPropagation();
-        let ele = e.target;
         this.defaultLoad();
     }
 
@@ -83,6 +85,14 @@ class PlayerSelect {
     }
 
     isAlreadySelected(ele) {
+        if (ele.classList.contains('left-selection') || ele.classList.contains('right-selection')) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    isCurrentSideAlreadySelected(ele) {
         return ele.classList.contains(`${this.currentSide}-selection`);
     }
 
@@ -103,12 +113,23 @@ class PlayerSelect {
     }
 
     toggleLock(ele) {
-        if (ele.innerHTML === '<i class="fas fa-lock"></i>') {
+        if (ele.innerHTML) {
             ele.innerHTML = '';
+            if (ele.classList.contains('left-selection')) {
+                this.currentSide = 'left';
+            } else {
+                this.currentSide = 'right';
+            }
         } else {
             ele.innerHTML = '<i class="fas fa-lock"></i>'
+            if (this.isCurrentSideAlreadySelected(ele)) {
+                this.switchCurrentSide();
+                let numLocks = document.getElementsByClassName('fa-lock').length;
+                if (numLocks > 1) {
+                    this.currentSide = undefined;
+                }
+            }
         }
-        console.log(ele)
     }
 }
 
