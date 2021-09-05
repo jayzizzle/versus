@@ -4,6 +4,7 @@ class PlayerSelect {
         this.artists = artists;
         this.leftSelection = artists[0];
         this.rightSelection = artists[1];
+        this.currentSide = 'left'
 
         for(let i = 0; i < artists.length; i++) {
             let box = document.createElement('li');
@@ -36,22 +37,25 @@ class PlayerSelect {
         e.stopPropagation();
         let ele = e.target;
         if (ele.tagName === 'LI') {
-            const oldLeftSelection = document.getElementsByClassName('left-selection');
+            const oldSelection = document.getElementsByClassName(`${this.currentSide}-selection`);
+            oldSelection[0].classList.remove(`${this.currentSide}-selection`);
+            ele.classList.add(`${this.currentSide}-selection`);
+            
+            this.switchCurrentSide();
 
-            if (oldLeftSelection[0])
-            oldLeftSelection[0].classList.remove("left-selection");
-
-            ele.classList.add('left-selection');
             const artist = this.artists[ele.dataset.id];
-            this.leftSelection = artist;
+            this.changeSelection(artist);
+
             this.hoverChain(ele);
+
+            this.lockSelection(ele);
         }
     }
 
     handleHover(e) {
         e.stopPropagation();
         let ele = e.target;
-        this.hoverChain(ele);
+        if (ele.tagName === 'LI') this.hoverChain(ele);
     }
 
     handleOffHover(e) {
@@ -62,12 +66,31 @@ class PlayerSelect {
 
     hoverChain(ele) {
         const artist = this.artists[ele.dataset.id];
-        if (artist) {
-            const displayName = document.getElementById('left-player-name');
-            const displayAlias = document.getElementById('left-player-alias');
-            displayName.innerHTML = artist.stageName;
-            displayAlias.innerHTML = artist.alias;
+        const displayName = document.getElementById(`${this.currentSide}-player-name`);
+        const displayAlias = document.getElementById(`${this.currentSide}-player-alias`);
+
+        displayName.innerHTML = artist.stageName;
+        displayAlias.innerHTML = artist.alias;
+    }
+
+    switchCurrentSide() {
+        if (this.currentSide === 'left') {
+            this.currentSide = 'right';
+        } else {
+            this.currentSide = 'left'
         }
+    }
+
+    changeSelection(artist) {
+        if (this.currentSide === 'left') {
+            this.rightSelection = artist;
+        } else {
+            this.leftSelection = artist;
+        }
+    }
+
+    lockSelection(ele) {
+        ele.innerHTML = '<i class="fas fa-lock"></i>'
     }
 }
 
