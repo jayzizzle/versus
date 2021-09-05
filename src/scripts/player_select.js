@@ -19,6 +19,7 @@ class PlayerSelect {
         ul.addEventListener('mouseover', this.handleHover.bind(this));
         ul.addEventListener('mouseout', this.handleOffHover.bind(this));
     }
+
     defaultLoad() {
         const displayLeftName = document.getElementById('left-player-name');
         const displayLeftAlias = document.getElementById('left-player-alias');
@@ -137,11 +138,13 @@ class PlayerSelect {
             }
         }
     }
+
     isBothLocked() {
         let numLocks = document.getElementsByClassName('fa-lock').length;
         if (numLocks === 2) this.currentSide = undefined;
         numLocks === 2;
     }
+    
     isOppositeSideLocked() {
         let oppSide = this.getOppositeSide();
         ele = document.getElementById(`${oppSide}-selection`);
