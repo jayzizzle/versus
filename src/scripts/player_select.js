@@ -8,6 +8,7 @@ class PlayerSelect {
 
         for(let i = 0; i < artists.length; i++) {
             let box = document.createElement('li');
+            box.setAttribute('id', '');
             box.setAttribute('class','li-player-select')
             box.setAttribute('data-id', i);
             ul.append(box);
@@ -129,6 +130,13 @@ class PlayerSelect {
                     this.currentSide = undefined;
                 }
             }
+        }
+    }
+    isOppositeSideLocked() {
+        ele = document.getElementsByClassName(`${this.currentSide}-selection`);
+        
+        if (this.currentSide) {
+
         }
     }
 }
