@@ -1,32 +1,34 @@
 class PlayerSelect {
-    constructor (ul, artists) {
+    constructor(ul, artists) {
+
         this.ele = ul;
         this.artists = artists;
         this.leftSelection = artists[0];
         this.rightSelection = artists[1];
         this.currentSide = 'left'
+        this.isLeftLocked = false;
+        this.isRightLocked = false;
 
-        for(let i = 0; i < artists.length; i++) {
-            let artist = artists[i];
+        for (let i = 0; i < artists.length; i++) {
             let box = document.createElement('li');
             box.setAttribute('id', '');
-            box.setAttribute('class','li-player-select')
+            box.setAttribute('class', 'li-player-select')
             box.setAttribute('data-id', i);
-            // box.style.backgroundImage = `url("/src/images/selection/${artist.fileName}.jpg")`;
             ul.append(box);
         }
 
-        this.defaultLoad();
+        this.setDefault();
+
         ul.addEventListener('click', this.handleClick.bind(this));
-        ul.addEventListener('mouseover', this.handleHover.bind(this));
-        ul.addEventListener('mouseout', this.handleOffHover.bind(this));
+        ul.addEventListener('mouseover', this.handleMouseOn.bind(this));
+        ul.addEventListener('mouseout', this.handleMouseOut.bind(this));
     }
 
-    defaultLoad() {
-        const displayLeftName = document.getElementById('left-player-name');
-        const displayLeftAlias = document.getElementById('left-player-alias');
-        const displayRightName = document.getElementById('right-player-name');
-        const displayRightAlias = document.getElementById('right-player-alias');
+    setDefault() {
+        let displayLeftName = document.getElementById('left-player-name');
+        let displayLeftAlias = document.getElementById('left-player-alias');
+        let displayRightName = document.getElementById('right-player-name');
+        let displayRightAlias = document.getElementById('right-player-alias');
         displayLeftName.innerHTML = this.leftSelection.stageName;
         displayLeftAlias.innerHTML = this.leftSelection.alias;
         displayRightName.innerHTML = this.rightSelection.stageName;
@@ -43,115 +45,122 @@ class PlayerSelect {
         let ele = e.target;
         if (ele.tagName === 'I') ele = ele.parentNode;
         if (ele.tagName === 'LI') {
-            if (this.isAlreadySelected(ele)) {
+
+            if (this.isCurrentlySelected(ele)) {
                 this.toggleLock(ele);
-                return;
-            } else if (this.currentSide && !this.isOppositeSelection(ele)) {
-
-                const oldSelection = document.getElementById(`${this.currentSide}-selection`);
-                oldSelection.id = '';
-                ele.id = `${this.currentSide}-selection`;
-                
-                if (!this.isOppositeSideLocked()) this.switchCurrentSide();
-
-                const artist = this.artists[ele.dataset.id];
-                this.changeSelection(artist);
+                return
             }
-        }
-    }
 
-    handleHover(e) {
-        e.stopPropagation();
-        let ele = e.target;
-        
-        if (this.currentSide && ele.tagName === 'LI' && !this.isAlreadySelected(ele) && !this.isBothLocked()) {
-            this.hoverChain(ele);
-        }
-    }
+            if (!!this.currentSide) {
+                this.swapSelection(ele);
 
-    handleOffHover(e) {
-        e.stopPropagation();
-        this.defaultLoad();
-    }
-
-    hoverChain(ele) {
-        const artist = this.artists[ele.dataset.id];
-        const displayName = document.getElementById(`${this.currentSide}-player-name`);
-        const displayAlias = document.getElementById(`${this.currentSide}-player-alias`);
-
-        displayName.innerHTML = artist.stageName;
-        displayAlias.innerHTML = artist.alias;
-    }
-
-    getOppositeSide() {
-        let oppSide;
-        this.currentSide === 'left' ? oppSide = 'right' : oppSide = 'left';
-        return oppSide;
-    }
-
-    isOppositeSelection(ele) {
-        let oppSide = this.getOppositeSide();
-        return ele.id === `${oppSide}-selection`;
-    }
-
-    isAlreadySelected(ele) {
-        if (ele.id === 'left-selection' || ele.id === 'right-selection') {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    isCurrentSideAlreadySelected(ele) {
-        return ele.id === `${this.currentSide}-selection`;
-    }
-
-    switchCurrentSide() {
-        if (this.currentSide === 'left') {
-            this.currentSide = 'right';
-        } else {
-            this.currentSide = 'left'
-        }
-    }
-
-    changeSelection(artist) {
-        if (this.currentSide === 'left') {
-            this.rightSelection = artist;
-        } else {
-            this.leftSelection = artist;
-        }
-    }
-
-    toggleLock(ele) {
-        if (ele.innerHTML) {
-            ele.innerHTML = '';
-            if (ele.id === 'left-selection') {
-                this.currentSide = 'left';
-            } else {
-                this.currentSide = 'right';
-            }
-        } else {
-            ele.innerHTML = '<i class="fas fa-lock"></i>'
-            if (this.isCurrentSideAlreadySelected(ele)) {
-                this.switchCurrentSide();
-                if (this.isBothLocked()) {
-                    this.currentSide = undefined;
+                if (this.isLeftLocked) {
+                    this.currentSide = 'right';
+                } else if (this.isRightLocked) {
+                    this.currentSide = 'left'
+                } else {
+                    this.switchCurrentSide();
                 }
             }
         }
     }
 
-    isBothLocked() {
-        let numLocks = document.getElementsByClassName('fa-lock').length;
-        if (numLocks === 2) this.currentSide = undefined;
-        return numLocks === 2;
+    toggleLock(ele) {
+        if (!!ele.querySelector('.fa-lock')) {
+            ele.innerHTML = '';
+            if (ele.id === 'left-selection') {
+                this.isLeftLocked = false;
+                this.currentSide = 'left';
+            } else {
+                this.isRightLocked = false;
+                this.currentSide = 'right';
+            }
+        } else {
+            ele.innerHTML = '<i class="fas fa-lock"></i>';
+            if (ele.id === 'left-selection') {
+                this.isLeftLocked = true;
+            } else {
+                this.isRightLocked = true;
+            }
+
+            if (this.isLeftLocked && this.isRightLocked) {
+                this.currentSide = undefined;
+            } else if (this.isLeftLocked && !this.isRightLocked) {
+                this.currentSide = 'right';
+            } else if (!this.ifLeftLocked && this.isRightLocked) {
+                this.currentSide = 'left'
+            }
+        }
     }
-    
-    isOppositeSideLocked() {
-        let oppSide = this.getOppositeSide();
-        ele = document.getElementById(`${oppSide}-selection`);
-        return ele.hasChildNodes();
+
+    swapSelection(ele) {
+        let oldSelection = this.currentSideSelection();
+        oldSelection.id = '';
+
+        ele.id = `${this.currentSide}-selection`;
+        const artist = this.artists[ele.dataset.id];
+
+        if (this.currentSide === 'left') {
+            this.leftSelection = artist;
+        } else {
+            this.rightSelection = artist;
+        }
     }
+
+    switchCurrentSide() {
+        if (!!this.currentSide) {
+            if (this.currentSide === 'left') {
+                this.currentSide = 'right';
+            } else {
+                this.currentSide = 'left';
+            }
+        }
+    }
+
+    handleMouseOn(e) {
+        e.stopPropagation();
+        let ele = e.target;
+
+        if (!!this.currentSide &&
+            ele.tagName === 'LI' &&
+            ele !== this.currentSideSelection() &&
+            ele !== this.oppositeSideSelection()) {
+            this.mouseOnActions(ele);
+        }
+    }
+
+    mouseOnActions(ele) {
+        let artist = this.artists[ele.dataset.id];
+        let displayName = document.getElementById(`${this.currentSide}-player-name`);
+        let displayAlias = document.getElementById(`${this.currentSide}-player-alias`);
+
+        displayName.innerHTML = artist.stageName;
+        displayAlias.innerHTML = artist.alias;
+    }
+
+    handleMouseOut(e) {
+        e.stopPropagation();
+        this.setDefault();
+    }
+
+    currentSideSelection() {
+        return document.getElementById(`${this.currentSide}-selection`);
+    }
+
+    oppositeSide() {
+        if (!this.currentSide) return
+        return this.currentSide === 'left' ? 'right' : 'left';
+    }
+
+    oppositeSideSelection() {
+        let oppSide = this.oppositeSide();
+        return document.getElementById(`${oppSide}-selection`);
+    }
+
+    isCurrentlySelected(ele) {
+        return ele.id === 'left-selection' || ele.id === 'right-selection'
+    }
+
 }
 
 module.exports = PlayerSelect;
