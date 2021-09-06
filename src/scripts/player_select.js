@@ -10,10 +10,12 @@ class PlayerSelect {
         this.isRightLocked = false;
 
         for (let i = 0; i < artists.length; i++) {
+            let artist = artists[i];
             let box = document.createElement('li');
             box.setAttribute('id', '');
             box.setAttribute('class', 'li-player-select')
             box.setAttribute('data-id', i);
+            box.style.backgroundImage = `url("/src/images/selection/${artist.fileName}.jpg")`;
             ul.append(box);
         }
 
@@ -79,8 +81,10 @@ class PlayerSelect {
             ele.innerHTML = '<i class="fas fa-lock"></i>';
             if (ele.id === 'left-selection') {
                 this.isLeftLocked = true;
+                ele.firstChild.classList.add('red');
             } else {
                 this.isRightLocked = true;
+                ele.firstChild.classList.add('blue');
             }
 
             if (this.isLeftLocked && this.isRightLocked) {
