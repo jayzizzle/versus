@@ -104,12 +104,12 @@ h6 {
 
 #left-selection {
     background-color: lightpink;
-    background-blend-mode: normal;
+    /* background-blend-mode: normal; */
 }
 
 #right-selection {
     background-color: lightskyblue;
-    background-blend-mode: normal;
+    /* background-blend-mode: normal; */
 }
 
 .fa-lock {

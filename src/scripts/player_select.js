@@ -12,7 +12,7 @@ class PlayerSelect {
             box.setAttribute('id', '');
             box.setAttribute('class','li-player-select')
             box.setAttribute('data-id', i);
-            box.style.backgroundImage = `url("/src/images/selection/${artist.fileName}.jpg")`;
+            // box.style.backgroundImage = `url("/src/images/selection/${artist.fileName}.jpg")`;
             ul.append(box);
         }
 
@@ -144,13 +144,13 @@ class PlayerSelect {
     isBothLocked() {
         let numLocks = document.getElementsByClassName('fa-lock').length;
         if (numLocks === 2) this.currentSide = undefined;
-        numLocks === 2;
+        return numLocks === 2;
     }
     
     isOppositeSideLocked() {
         let oppSide = this.getOppositeSide();
         ele = document.getElementById(`${oppSide}-selection`);
-        ele.hasChildNodes();
+        return ele.hasChildNodes();
     }
 }
 
