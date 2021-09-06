@@ -86,10 +86,13 @@ h6 {
     text-align: center;
     border: 3px solid black;
     background-color: lightgrey;
+    background-size: contain;
+    background-blend-mode: luminosity;
 }
 
 .li-player-select:hover {
     background-color: lightslategray;
+    background-blend-mode: normal;
 }
 
 /* BEGIN EFFECTS */
@@ -101,10 +104,12 @@ h6 {
 
 #left-selection {
     background-color: lightpink;
+    background-blend-mode: normal;
 }
 
 #right-selection {
     background-color: lightskyblue;
+    background-blend-mode: normal;
 }
 
 .fa-lock {

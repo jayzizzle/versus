@@ -7,10 +7,12 @@ class PlayerSelect {
         this.currentSide = 'left'
 
         for(let i = 0; i < artists.length; i++) {
+            let artist = artists[i];
             let box = document.createElement('li');
             box.setAttribute('id', '');
             box.setAttribute('class','li-player-select')
             box.setAttribute('data-id', i);
+            box.style.backgroundImage = `url("/src/images/selection/${artist.fileName}.jpg")`;
             ul.append(box);
         }
 
