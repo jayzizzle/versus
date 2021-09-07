@@ -9,28 +9,39 @@ document.addEventListener('DOMContentLoaded', () => {
     const playerSelect = new PlayerSelect(ulPlayerSelect, artists);
     const playerToggle = new PlayerToggle(playerSelect);
 
-    let playerChart = document.getElementById('chart').getContext('2d');
-    let playerStats = new Chart(playerChart, {
-        type: 'bar', //horizontalBar
-        data: {
-            labels: ['Platinum Albums', 'Platinum Singles', 'Grammys Won'],
-            datasets: [{
-                label: 'Numbers',
-                data: [
-                    24,
-                    7,
-                    12
-                ],
-                backgroundColor: [
-                    'lightpink',
-                    'lightblue',
-                    'lightgreen'
-                ],
-                borderWidth: 1,
-                borderColor: 'lightgrey',
+    // let playerChart = document.getElementById('chart').getContext('2d');
+    // let playerStats = new Chart(playerChart, {
+    //     type: 'bar',
+    //     data: {
+    //         labels: ['Platinum Albums', 'Platinum Singles', 'Grammys Won'],
+    //         datasets: [{
+    //             indexAxis: 'y',
+    //             label: 'Numbers',
+    //             data: [
+    //                 24,
+    //                 7,
+    //                 12
+    //             ],
+    //             backgroundColor: [
+    //                 'lightpink',
+    //                 'lightblue',
+    //                 'lightgreen'
+    //             ],
+    //             borderWidth: 1,
+    //             borderColor: 'lightgrey',
+    //             hoverBorderWidth: 2,
+    //             hoverBorderColor: 'black',
 
-            }]
-        },
-        options: {}
-    });
+    //         }]
+    //     },
+    //     options: {
+    //         plugins: {
+    //             title: {
+    //                 display: true,
+    //                 text: 'Artist Stats',
+    //                 fontSize: 25
+    //             }
+    //         }
+    //     }
+    // });
 });
