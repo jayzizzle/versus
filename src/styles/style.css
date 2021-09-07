@@ -6,7 +6,7 @@ body {
     position: relative;
     min-height: 100%;
     height: 100%;
-    background-color: lightgreen;
+    /* background-color: lightgreen; */
 }
 
 h1 {
@@ -54,15 +54,28 @@ h6 {
     align-items: center;
 }
 
-.player-side-left {
-    background-color: mistyrose;
+#player-side-left {
+    /* background-color: mistyrose; */
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: left top;
 }
 
-.player-side-right {
-    background-color: lightcyan;
+#player-side-right {
+    /* background-color: lightcyan; */
+    background-color: white;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: right top;
 }
 
 /* BEGIN CHARACTER SELECT */
+
+.player-select-wrapper {
+    display: flex;
+    flex-direction: column;
+}
 
 #ul-player-select {
     bottom: 0;
@@ -70,30 +83,36 @@ h6 {
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    width: 240px;
-    height: 120px;
+    width: 350px;
+    height: 175px;
     /* border: 3px solid black; */
-    cursor: pointer;
 }
 
 .li-player-select {
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50px;
-    height: 50px;
+    width: 75px;
+    height: 75px;
     margin: 0 auto;
     text-align: center;
     border: 3px solid black;
     background-color: lightgrey;
     background-size: contain;
     background-blend-mode: luminosity;
+    cursor: pointer;
 }
 
 .li-player-select:hover {
     background-color: lightslategray;
     background-blend-mode: normal;
     box-shadow: 0 0 5px black;
+}
+
+.player-select-toggle {
+    background-color: seagreen;
+    height: 20px;
+    margin: 5px 0px;
 }
 
 /* BEGIN EFFECTS */

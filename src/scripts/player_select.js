@@ -27,12 +27,19 @@ class PlayerSelect {
     }
 
     setDefault() {
+        let backgroundLeft = document.getElementById('player-side-left')
         let displayLeftName = document.getElementById('left-player-name');
         let displayLeftAlias = document.getElementById('left-player-alias');
+
+        let backgroundRight = document.getElementById('player-side-right')
         let displayRightName = document.getElementById('right-player-name');
         let displayRightAlias = document.getElementById('right-player-alias');
+
+        backgroundLeft.style.backgroundImage = `url("/src/images/background/${this.leftSelection.fileName}.jpg")`;
         displayLeftName.innerHTML = this.leftSelection.stageName;
         displayLeftAlias.innerHTML = this.leftSelection.alias;
+
+        backgroundRight.style.backgroundImage = `url("/src/images/background_alt/${this.rightSelection.fileName}.jpg")`;
         displayRightName.innerHTML = this.rightSelection.stageName;
         displayRightAlias.innerHTML = this.rightSelection.alias;
 
@@ -135,8 +142,16 @@ class PlayerSelect {
 
     mouseOnActions(ele) {
         let artist = this.artists[ele.dataset.id];
+
+        let backgroundImg = document.getElementById(`player-side-${this.currentSide}`)
         let displayName = document.getElementById(`${this.currentSide}-player-name`);
         let displayAlias = document.getElementById(`${this.currentSide}-player-alias`);
+
+        if (this.currentSide === 'left') {
+            backgroundImg.style.backgroundImage = `url("/src/images/background/${artist.fileName}.jpg")`
+        } else if (this.currentSide === 'right') {
+            backgroundImg.style.backgroundImage = `url("/src/images/background_alt/${artist.fileName}.jpg")`
+        }
 
         displayName.innerHTML = artist.stageName;
         displayAlias.innerHTML = artist.alias;
@@ -152,7 +167,7 @@ class PlayerSelect {
     }
 
     oppositeSide() {
-        if (!this.currentSide) return
+        if (!this.currentSide) return;
         return this.currentSide === 'left' ? 'right' : 'left';
     }
 
