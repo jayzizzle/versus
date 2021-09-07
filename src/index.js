@@ -9,8 +9,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const playerSelect = new PlayerSelect(ulPlayerSelect, artists);
     const playerToggle = new PlayerToggle(playerSelect);
 
-    const playerChart = document.getElementById('chart').getContext('2d');
-    const playerStats = new Chart(playerChart, {
+    let playerChart = document.getElementById('chart').getContext('2d');
+    let playerStats = new Chart(playerChart, {
         type: 'bar', //horizontalBar
         data: {
             labels: ['Platinum Albums', 'Platinum Singles', 'Grammys Won'],
@@ -25,7 +25,10 @@ document.addEventListener('DOMContentLoaded', () => {
                     'lightpink',
                     'lightblue',
                     'lightgreen'
-                ]
+                ],
+                borderWidth: 1,
+                borderColor: 'lightgrey',
+
             }]
         },
         options: {}
