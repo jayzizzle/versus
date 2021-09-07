@@ -43,6 +43,13 @@ h6 {
     width: 100%;
 }
 
+/* BEGIN CHARTS */
+
+canvas {
+    height: auto;
+    width: 60vw;
+}
+
 /* BEGIN PLAYER SECTION */
 
 .player-container {
@@ -128,6 +135,7 @@ h6 {
     margin: 5px 0px;
     font-family: 'Oswald', sans-serif;
     color: darkslategray;
+    text-shadow: 1px 1px gainsboro;
 }
 
 .switch-wrapper {
