@@ -6,8 +6,6 @@ class PlayerSelect {
         this.leftSelection = artists[0];
         this.rightSelection = artists[1];
         this.currentSide = 'left'
-        this.isLeftLocked = false;
-        this.isRightLocked = false;
 
         for (let i = 0; i < artists.length; i++) {
             let artist = artists[i];
@@ -53,54 +51,8 @@ class PlayerSelect {
         e.stopPropagation();
         let ele = e.target;
         if (ele.tagName === 'I') ele = ele.parentNode;
-        if (ele.tagName === 'LI') {
-
-            if (this.isCurrentlySelected(ele)) {
-                this.toggleLock(ele);
-                return
-            }
-
-            if (!!this.currentSide) {
-                this.swapSelection(ele);
-
-                if (this.isLeftLocked) {
-                    this.currentSide = 'right';
-                } else if (this.isRightLocked) {
-                    this.currentSide = 'left'
-                } else {
-                    this.switchCurrentSide();
-                }
-            }
-        }
-    }
-
-    toggleLock(ele) {
-        if (!!ele.querySelector('.fa-lock')) {
-            ele.innerHTML = '';
-            if (ele.id === 'left-selection') {
-                this.isLeftLocked = false;
-                this.currentSide = 'left';
-            } else {
-                this.isRightLocked = false;
-                this.currentSide = 'right';
-            }
-        } else {
-            ele.innerHTML = '<i class="fas fa-lock"></i>';
-            if (ele.id === 'left-selection') {
-                this.isLeftLocked = true;
-                ele.firstChild.classList.add('red');
-            } else {
-                this.isRightLocked = true;
-                ele.firstChild.classList.add('blue');
-            }
-
-            if (this.isLeftLocked && this.isRightLocked) {
-                this.currentSide = undefined;
-            } else if (this.isLeftLocked && !this.isRightLocked) {
-                this.currentSide = 'right';
-            } else if (!this.ifLeftLocked && this.isRightLocked) {
-                this.currentSide = 'left'
-            }
+        if (ele.tagName === 'LI' && !this.isCurrentlySelected(ele)) {
+            this.swapSelection(ele);
         }
     }
 
@@ -118,22 +70,11 @@ class PlayerSelect {
         }
     }
 
-    switchCurrentSide() {
-        if (!!this.currentSide) {
-            if (this.currentSide === 'left') {
-                this.currentSide = 'right';
-            } else {
-                this.currentSide = 'left';
-            }
-        }
-    }
-
     handleMouseOn(e) {
         e.stopPropagation();
         let ele = e.target;
 
-        if (!!this.currentSide &&
-            ele.tagName === 'LI' &&
+        if (ele.tagName === 'LI' &&
             ele !== this.currentSideSelection() &&
             ele !== this.oppositeSideSelection()) {
             this.mouseOnActions(ele);
