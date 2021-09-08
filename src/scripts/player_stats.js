@@ -153,7 +153,9 @@ class PlayerStats {
         const newRightData = this.setRightValues(playerRight);
         this.chart.data.datasets[1].label = playerRight.stageName;
         this.chart.data.datasets[1].data = newRightData;
-        
+        let newSuggestedMax = this.setSuggestedMax(Object.values(this.playerSelect.leftSelection.stats), newRightData)
+        this.chart.options.scales.x.suggestedMax = newSuggestedMax;
+        this.chart.options.scales.x.suggestedMin = (-1 * newSuggestedMax);
         this.chart.update();
     }
 }

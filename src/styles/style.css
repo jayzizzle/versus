@@ -67,8 +67,9 @@ h6 {
     width :50vw;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
+    padding-top: 100px;
 }
 
 #player-side-left {
@@ -78,7 +79,7 @@ h6 {
     background-size: cover;
     background-position: left top;
     display: flex;
-    align-items: flex-start;
+    /* align-items: flex-start; */
 }
 
 #player-side-right {
@@ -88,7 +89,7 @@ h6 {
     background-size: cover;
     background-position: right top;
     display: flex;
-    align-items: flex-end;
+    /* align-items: flex-end; */
 }
 
 /* BEGIN CHARACTER SELECT */

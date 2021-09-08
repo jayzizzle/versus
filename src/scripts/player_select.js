@@ -107,7 +107,11 @@ class PlayerSelect {
         displayName.innerHTML = artist.stageName;
         displayAlias.innerHTML = artist.alias;
 
-        this.playerStats.updateLeft(artist);
+        if (this.currentSide === 'left') {
+            this.playerStats.updateLeft(artist);
+        } else {
+            this.playerStats.updateRight(artist);
+        }
     }
 
     handleMouseOut(e) {
