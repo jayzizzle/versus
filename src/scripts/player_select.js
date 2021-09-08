@@ -33,18 +33,23 @@ class PlayerSelect {
         let backgroundLeft = document.getElementById('player-side-left')
         let displayLeftName = document.getElementById('left-player-name');
         let displayLeftAlias = document.getElementById('left-player-alias');
+        let asideLeft = document.getElementById('aside-left-blockquote');
 
         let backgroundRight = document.getElementById('player-side-right')
         let displayRightName = document.getElementById('right-player-name');
         let displayRightAlias = document.getElementById('right-player-alias');
+        let asideRight = document.getElementById('aside-right-blockquote');
 
         backgroundLeft.style.backgroundImage = `url("/src/images/background/${this.leftSelection.fileName}.jpg")`;
         displayLeftName.innerHTML = this.leftSelection.stageName;
         displayLeftAlias.innerHTML = this.leftSelection.alias;
+        asideLeft.innerHTML = this.leftSelection.factoid;
+
 
         backgroundRight.style.backgroundImage = `url("/src/images/background_alt/${this.rightSelection.fileName}.jpg")`;
         displayRightName.innerHTML = this.rightSelection.stageName;
         displayRightAlias.innerHTML = this.rightSelection.alias;
+        asideRight.innerHTML = this.rightSelection.factoid;
 
         const list = document.getElementsByClassName('li-player-select');
 
@@ -97,6 +102,7 @@ class PlayerSelect {
         let backgroundImg = document.getElementById(`player-side-${this.currentSide}`)
         let displayName = document.getElementById(`${this.currentSide}-player-name`);
         let displayAlias = document.getElementById(`${this.currentSide}-player-alias`);
+        let aside = document.getElementById(`aside-${this.currentSide}-blockquote`);
 
         if (this.currentSide === 'left') {
             backgroundImg.style.backgroundImage = `url("/src/images/background/${artist.fileName}.jpg")`
@@ -106,6 +112,7 @@ class PlayerSelect {
 
         displayName.innerHTML = artist.stageName;
         displayAlias.innerHTML = artist.alias;
+        aside.innerHTML = artist.factoid;
 
         if (this.currentSide === 'left') {
             this.playerStats.updateLeft(artist);

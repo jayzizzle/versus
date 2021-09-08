@@ -40,12 +40,30 @@ class PlayerStats {
             datasets: [{
                 label: playerLeft.stageName,
                 data: this.setLeftValues(playerLeft),
-                backgroundColor: 'lightcoral'
+                backgroundColor: 'lightcoral',
+                datalabels: {
+                    color: 'lightcoral',
+                    anchor: 'start',
+                    align: 'start',
+                    offset: 10,
+                    formatter: function (value, index, values) {
+                        return value !== 0 ? Math.abs(value) : '';
+                    }
+                }
             },
             {
                 label: playerRight.stageName,
                 data: this.setRightValues(playerRight),
-                backgroundColor: 'lightskyblue'
+                backgroundColor: 'lightskyblue',
+                datalabels: {
+                    color: 'lightskyblue',
+                    anchor: 'end',
+                    align: 'end',
+                    offset: 10,
+                    formatter: function (value, index, values) {
+                        return value !== 0 ? Math.abs(value) : '';
+                    }
+                }
             }]
         }
         return data;
@@ -65,6 +83,7 @@ class PlayerStats {
         const config = {
             type: 'bar',
             data,
+            plugins: [ChartDataLabels],
             options: {
                 indexAxis: 'y',
                 scales: {
@@ -73,9 +92,11 @@ class PlayerStats {
                         suggestedMin: (-1 * this.setSuggestedMax()),
                         stacked: true,
                         grid: {
-                            display: false
+                            display: false,
+                            drawBorder: false
                         },
                         ticks: {
+                            display: false,
                             callback: function(value, index, values) {
                                 return Math.abs(value);
                             }
@@ -85,7 +106,8 @@ class PlayerStats {
                         beginAtZero: true,
                         stacked: true,
                         grid: {
-                            display: false
+                            display: false,
+                            drawBorder: false
                         },
                         ticks: {
                             mirror: true
