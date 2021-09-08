@@ -76,8 +76,8 @@ class PlayerSelect {
         }
     }
 
-    refreshChart() {
-        this.playerStats.updateChart(this.leftSelection, this.rightSelection);
+    refreshChart(leftPlayer = this.leftSelection, rightPlayer = this.rightSelection) {
+        this.playerStats.updateChart(leftPlayer, rightPlayer);
     }
 
     handleMouseOn(e) {
@@ -106,11 +106,14 @@ class PlayerSelect {
 
         displayName.innerHTML = artist.stageName;
         displayAlias.innerHTML = artist.alias;
+
+        this.playerStats.updateLeft(artist);
     }
 
     handleMouseOut(e) {
         e.stopPropagation();
         this.setDefault();
+        this.refreshChart();
     }
 
     currentSideSelection() {

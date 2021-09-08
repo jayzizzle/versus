@@ -138,6 +138,24 @@ class PlayerStats {
 
         this.chart.update();
     }
+
+    updateLeft(playerLeft = this.playerSelect.leftSelection) {
+        const newLeftData = this.setLeftValues(playerLeft);
+        this.chart.data.datasets[0].label = playerLeft.stageName;
+        this.chart.data.datasets[0].data = newLeftData;
+        let newSuggestedMax = this.setSuggestedMax(Object.values(playerLeft.stats));
+        this.chart.options.scales.x.suggestedMax = newSuggestedMax;
+        this.chart.options.scales.x.suggestedMin = (-1 * newSuggestedMax);
+        this.chart.update();
+    }
+
+    updateRight(playerRight = this.playerSelect.rightSelection) {
+        const newRightData = this.setRightValues(playerRight);
+        this.chart.data.datasets[1].label = playerRight.stageName;
+        this.chart.data.datasets[1].data = newRightData;
+        
+        this.chart.update();
+    }
 }
 
 export default PlayerStats;
