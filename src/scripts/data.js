@@ -48,11 +48,11 @@ const artists = [
         fullName: 'Marshall Mathers',
         fileName: 'eminem',
         stats: {
-            bbHot100Num1: 8,
-            platSingles: 0,
-            bb200Num1: 0,
-            platAlbums: 0,
-            grammyWins: 0
+            bbHot100Num1: 5,
+            platSingles: 29,
+            bb200Num1: 10,
+            platAlbums: 10,
+            grammyWins: 15
         }
     },
     {
@@ -62,11 +62,11 @@ const artists = [
         fullName: 'Shawn Carter',
         fileName: 'jayz',
         stats: {
-            bbHot100Num1: 8,
-            platSingles: 0,
-            bb200Num1: 0,
-            platAlbums: 0,
-            grammyWins: 0
+            bbHot100Num1: 4,
+            platSingles: 17,
+            bb200Num1: 14,
+            platAlbums: 13,
+            grammyWins: 23
         }
     },
     {
@@ -76,11 +76,11 @@ const artists = [
         fullName: 'Kanye West',
         fileName: 'kanye',
         stats: {
-            bbHot100Num1: 8,
-            platSingles: 0,
-            bb200Num1: 0,
-            platAlbums: 0,
-            grammyWins: 0
+            bbHot100Num1: 4,
+            platSingles: 30,
+            bb200Num1: 10,
+            platAlbums: 7,
+            grammyWins: 22
         }
     },
     {
@@ -90,11 +90,11 @@ const artists = [
         fullName: 'Dwayne Carter',
         fileName: 'lilwayne',
         stats: {
-            bbHot100Num1: 8,
-            platSingles: 0,
-            bb200Num1: 0,
-            platAlbums: 0,
-            grammyWins: 0
+            bbHot100Num1: 3,
+            platSingles: 26,
+            bb200Num1: 5,
+            platAlbums: 9,
+            grammyWins: 5
         }
     },
     {
@@ -104,11 +104,11 @@ const artists = [
         fullName: 'Nasir Jones',
         fileName: 'nas',
         stats: {
-            bbHot100Num1: 8,
-            platSingles: 0,
-            bb200Num1: 0,
-            platAlbums: 0,
-            grammyWins: 0
+            bbHot100Num1: 0,
+            platSingles: 1,
+            bb200Num1: 6,
+            platAlbums: 7,
+            grammyWins: 1
         }
     }
 ]

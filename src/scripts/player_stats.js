@@ -117,7 +117,7 @@ class PlayerStats {
         this.chart = playerStats;
     }
 
-    swapData(
+    updateChart(
         playerLeft = this.playerSelect.leftSelection,
         playerRight = this.playerSelect.rightSelection
     ) 
@@ -135,8 +135,6 @@ class PlayerStats {
 
         this.chart.options.scales.x.suggestedMax = newSuggestedMax;
         this.chart.options.scales.x.suggestedMin = (-1 * newSuggestedMax);
-
-        console.log(newLeftData);
 
         this.chart.update();
     }

@@ -77,7 +77,7 @@ class PlayerSelect {
     }
 
     refreshChart() {
-        this.playerStats.swapData(this.leftSelection, this.rightSelection);
+        this.playerStats.updateChart(this.leftSelection, this.rightSelection);
     }
 
     handleMouseOn(e) {
