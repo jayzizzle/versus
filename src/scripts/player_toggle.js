@@ -24,4 +24,5 @@ class PlayerToggle {
     }
 }
 
-module.exports = PlayerToggle;
+// module.exports = PlayerToggle;
+export default PlayerToggle;

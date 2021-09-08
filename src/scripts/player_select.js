@@ -1,3 +1,6 @@
+// const PlayerStats = require('/src/scripts/player_stats');
+import PlayerStats from '/src/scripts/player_stats'
+
 class PlayerSelect {
     constructor(ul, artists) {
 
@@ -6,6 +9,8 @@ class PlayerSelect {
         this.leftSelection = artists[0];
         this.rightSelection = artists[1];
         this.currentSide = 'left'
+
+        this.playerStats = new PlayerStats(this, this.artists);
 
         for (let i = 0; i < artists.length; i++) {
             let artist = artists[i];
@@ -123,4 +128,4 @@ class PlayerSelect {
 
 }
 
-module.exports = PlayerSelect;
+export default PlayerSelect;

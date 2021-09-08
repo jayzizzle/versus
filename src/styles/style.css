@@ -45,9 +45,12 @@ h6 {
 
 /* BEGIN CHARTS */
 
-canvas {
-    height: auto;
-    width: auto;
+.chart-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 50%;
+    /* background-color: lightgreen; */
 }
 
 /* BEGIN PLAYER SECTION */

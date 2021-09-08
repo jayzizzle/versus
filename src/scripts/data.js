@@ -4,14 +4,28 @@ const artists = [
         stageName: '2Pac',
         alias: 'Makaveli',
         fullName: 'Tupac Shakur',
-        fileName: '2pac'
+        fileName: '2pac',
+        stats: {
+            bbHot100num1: 1,
+            platSingles: 5,
+            bb200num1: 5,
+            platAlbums: 11,
+            grammyWins: 0
+        }
     },
     {
         id: 1,
         stageName: 'BIG',
         alias: 'Big Poppa',
         fullName: 'Christopher Wallace',
-        fileName: 'big'
+        fileName: 'big',
+        stats: {
+            bbHot100num1: 2,
+            platSingles: 4,
+            bb200num1: 3,
+            platAlbums: 5,
+            grammyWins: 0
+        }
     },
     {
         id: 2,
