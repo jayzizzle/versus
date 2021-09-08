@@ -58,6 +58,7 @@ class PlayerSelect {
         if (ele.tagName === 'I') ele = ele.parentNode;
         if (ele.tagName === 'LI' && !this.isCurrentlySelected(ele)) {
             this.swapSelection(ele);
+            this.refreshChart();
         }
     }
 
@@ -73,6 +74,10 @@ class PlayerSelect {
         } else {
             this.rightSelection = artist;
         }
+    }
+
+    refreshChart() {
+        this.playerStats.swapData(this.leftSelection, this.rightSelection);
     }
 
     handleMouseOn(e) {

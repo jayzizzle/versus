@@ -77,6 +77,8 @@ h6 {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: left top;
+    display: flex;
+    align-items: flex-start;
 }
 
 #player-side-right {
@@ -85,6 +87,8 @@ h6 {
     background-repeat: no-repeat;
     background-size: cover;
     background-position: right top;
+    display: flex;
+    align-items: flex-end;
 }
 
 /* BEGIN CHARACTER SELECT */

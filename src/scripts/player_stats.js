@@ -3,6 +3,7 @@ class PlayerStats {
         this.playerSelect = playerSelect;
         this.artists = artists;
         this.playerChart = document.getElementById('chart').getContext('2d');
+        this.chart = undefined;
 
         const data = this.setData();
         const config = this.setConfig(data);
@@ -14,15 +15,20 @@ class PlayerStats {
         playerLeftData.forEach(ele => convertedData.push(ele * -1));
         return convertedData;
     }
+
+    setLeftValues(playerLeft = this.playerSelect.leftSelection) {
+        return this.convertLeftData(Object.values(playerLeft.stats));
+    }
+
+    setRightValues(playerRight = this.playerSelect.rightSelection) {
+        return Object.values(playerRight.stats);
+    }
     
     setData(
         playerLeft = this.playerSelect.leftSelection, 
         playerRight = this.playerSelect.rightSelection
     ) 
     {
-        const leftValues = this.convertLeftData(Object.values(playerLeft.stats));
-        const rightValues = Object.values(playerRight.stats);
-
         const data = {
             labels: [
                 '#1 Singles (BillBoard Hot100)', 
@@ -33,16 +39,26 @@ class PlayerStats {
             ],
             datasets: [{
                 label: playerLeft.stageName,
-                data: leftValues,
+                data: this.setLeftValues(playerLeft),
                 backgroundColor: 'lightcoral'
             },
             {
                 label: playerRight.stageName,
-                data: rightValues,
+                data: this.setRightValues(playerRight),
                 backgroundColor: 'lightskyblue'
             }]
         }
         return data;
+    }
+
+    setSuggestedMax(
+        leftData = this.setLeftValues(), 
+        rightData = this.setRightValues()
+    ) 
+    {
+        const totalData = leftData.concat(rightData);
+        let maxValue = Math.max(...totalData);
+        return (Math.ceil(maxValue / 10) * 10) + 10; // REFACTOR THIS LATER
     }
 
     setConfig(data) {
@@ -53,8 +69,8 @@ class PlayerStats {
                 indexAxis: 'y',
                 scales: {
                     x: {
-                        suggestedMax: 30,
-                        suggestedMin: -30,
+                        suggestedMax: this.setSuggestedMax(),
+                        suggestedMin: (-1 * this.setSuggestedMax()),
                         stacked: true,
                         grid: {
                             display: false
@@ -98,6 +114,31 @@ class PlayerStats {
     
     buildChart(config) {
         let playerStats = new Chart(this.playerChart, config);
+        this.chart = playerStats;
+    }
+
+    swapData(
+        playerLeft = this.playerSelect.leftSelection,
+        playerRight = this.playerSelect.rightSelection
+    ) 
+    {
+        const newLeftData = this.setLeftValues(playerLeft);
+        const newRightData = this.setRightValues(playerRight);
+        
+        this.chart.data.datasets[0].label = playerLeft.stageName;
+        this.chart.data.datasets[0].data = newLeftData;
+
+        this.chart.data.datasets[1].label = playerRight.stageName;
+        this.chart.data.datasets[1].data = newRightData;
+
+        let newSuggestedMax = this.setSuggestedMax(Object.values(playerLeft.stats), newRightData)
+
+        this.chart.options.scales.x.suggestedMax = newSuggestedMax;
+        this.chart.options.scales.x.suggestedMin = (-1 * newSuggestedMax);
+
+        console.log(newLeftData);
+
+        this.chart.update();
     }
 }
 
