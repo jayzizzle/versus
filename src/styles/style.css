@@ -5,6 +5,7 @@ html {
 body {
     position: relative;
     min-height: 100%;
+    min-width: 600px;
     height: 100%;
     /* background-color: lightgreen; */
 }
@@ -34,10 +35,16 @@ h6 {
     text-transform: uppercase;
 }
 
+.fab, .fas, .fa-solid{
+    font-size: 36px;
+    color: lightslategray;
+    padding: 0px 5px;
+}
+
 .flex-box-row {
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
 }
 
@@ -215,6 +222,7 @@ input:checked + label {
 aside {
     width: 20vw;
     padding: 20px;
+    margin-top: 40px;
     background-color: rgb(255, 255, 240, 0.5);
     font-family: 'Times New Roman', Times, serif;
     font-size: 16px;
@@ -230,8 +238,28 @@ aside {
 }
 
 #aside-right {
-
+    text-align: left;
 }
+
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 60px 60px 0px 60px;
+}
+
+.fa-linkedin:hover {
+    color: #0072b1;
+}
+
+.fa-github-square:hover {
+    color: #6e5494;
+}
+
+.fa-compact-disc:hover {
+    color: rgb(243, 178, 166);
+}
+
 
 /* BEGIN EFFECTS */
 
@@ -278,4 +306,31 @@ aside {
 
 .hidden {
     display: none;
+}
+
+/* Tooltip container */
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+}
+
+/* Tooltip text */
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 120px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  padding: 5px 0;
+  border-radius: 6px;
+ 
+  /* Position the tooltip text - see examples below! */
+  position: absolute;
+  z-index: 1;
+}
+
+/* Show the tooltip text when you mouse over the tooltip container */
+.tooltip:hover .tooltiptext {
+  visibility: visible;
 }

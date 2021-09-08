@@ -46,8 +46,10 @@ class PlayerStats {
                     anchor: 'start',
                     align: 'start',
                     offset: 10,
-                    formatter: function (value, index, values) {
-                        return value !== 0 ? Math.abs(value) : '';
+                    formatter: function (value, context) {
+                        value = Math.abs(value);
+                        const label = context.chart.data.labels[context.dataIndex];
+                        return value !== 0 ? `${label} | ${value}` : ''
                     }
                 }
             },
@@ -60,8 +62,10 @@ class PlayerStats {
                     anchor: 'end',
                     align: 'end',
                     offset: 10,
-                    formatter: function (value, index, values) {
-                        return value !== 0 ? Math.abs(value) : '';
+                    formatter: function (value, context) {
+                        value = Math.abs(value);
+                        const label =  context.chart.data.labels[context.dataIndex];
+                        return value !==0 ? `${value} | ${label}` : ''
                     }
                 }
             }]
@@ -76,7 +80,7 @@ class PlayerStats {
     {
         const totalData = leftData.concat(rightData);
         let maxValue = Math.max(...totalData);
-        return (Math.ceil(maxValue / 10) * 10) + 10;
+        return (Math.ceil(maxValue / 10) * 10) + 20;
     }
 
     setConfig(data) {
@@ -85,7 +89,7 @@ class PlayerStats {
             data,
             plugins: [ChartDataLabels],
             options: {
-                responsive: true,
+                responsive: true, // TEST THIS
                 indexAxis: 'y',
                 scales: {
                     x: {
