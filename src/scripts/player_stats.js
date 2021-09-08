@@ -76,7 +76,7 @@ class PlayerStats {
     {
         const totalData = leftData.concat(rightData);
         let maxValue = Math.max(...totalData);
-        return (Math.ceil(maxValue / 10) * 10) + 10; // REFACTOR THIS LATER
+        return (Math.ceil(maxValue / 10) * 10) + 10;
     }
 
     setConfig(data) {
@@ -85,6 +85,7 @@ class PlayerStats {
             data,
             plugins: [ChartDataLabels],
             options: {
+                responsive: true,
                 indexAxis: 'y',
                 scales: {
                     x: {
@@ -110,6 +111,7 @@ class PlayerStats {
                             drawBorder: false
                         },
                         ticks: {
+                            display: false, // LEFT LABELS
                             mirror: true
                         }
                     }
@@ -119,6 +121,7 @@ class PlayerStats {
                         display: false
                     },
                     tooltip: {
+                        enabled: false,
                         mode: 'index',
                         yAlign: 'bottom',
                         titleAlign: 'center',
