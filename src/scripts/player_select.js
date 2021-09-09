@@ -18,7 +18,7 @@ class PlayerSelect {
             box.setAttribute('id', '');
             box.setAttribute('class', 'li-player-select')
             box.setAttribute('data-id', i);
-            box.style.backgroundImage = `url("/src/images/selection/${artist.fileName}.jpg")`;
+            box.style.backgroundImage = `url("./src/images/selection/${artist.fileName}.jpg")`;
             ul.append(box);
         }
 
@@ -105,9 +105,9 @@ class PlayerSelect {
         let aside = document.getElementById(`aside-${this.currentSide}-blockquote`);
 
         if (this.currentSide === 'left') {
-            backgroundImg.style.backgroundImage = `url("/src/images/background/${artist.fileName}.jpg")`
+            backgroundImg.style.backgroundImage = `url("./src/images/background/${artist.fileName}.jpg")`
         } else if (this.currentSide === 'right') {
-            backgroundImg.style.backgroundImage = `url("/src/images/background_alt/${artist.fileName}.jpg")`
+            backgroundImg.style.backgroundImage = `url("./src/images/background_alt/${artist.fileName}.jpg")`
         }
 
         displayName.innerHTML = artist.stageName;
