@@ -31,9 +31,9 @@ class PlayerStats {
     {
         const data = {
             labels: [
-                '#1 Singles (BillBoard Hot100)', 
+                '#1 Singles (Billboard Hot100)', 
                 'Platinum Singles', 
-                '#1 Albums (BillBoard 200)', 
+                '#1 Albums (Billboard 200)', 
                 'Platinum Albums', 
                 'Grammy Awards'
             ],
@@ -142,6 +142,7 @@ class PlayerStats {
     }
     
     buildChart(config) {
+        Chart.defaults.font.family = "'Oswald', sans-serif";
         let playerStats = new Chart(this.playerChart, config);
         this.chart = playerStats;
     }

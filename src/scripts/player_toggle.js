@@ -12,14 +12,19 @@ class PlayerToggle {
     handleToggle(e) {
         e.stopPropagation();
         let ele = e.target;
+        let versus = document.getElementById('versus-select');
         if (ele.checked) {
             this.playerSelect.currentSide = 'right';
             this.playerLeftLabel.classList.add('fade');
             this.playerRightLabel.classList.remove('fade');
+            versus.classList.add('lightskyblue');
+            versus.classList.remove('lightcoral');
         } else {
             this.playerSelect.currentSide = 'left';
             this.playerRightLabel.classList.add('fade');
             this.playerLeftLabel.classList.remove('fade');
+            versus.classList.add('lightcoral');
+            versus.classList.remove('lightskyblue');
         }
     }
 }
