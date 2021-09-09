@@ -46,7 +46,7 @@ class PlayerSelect {
         asideLeft.innerHTML = this.leftSelection.factoid;
 
 
-        backgroundRight.style.backgroundImage = `url("/src/images/background_alt/${this.rightSelection.fileName}.jpg")`;
+        backgroundRight.style.backgroundImage = `/src/images/background_alt/${this.rightSelection.fileName}.jpg`;
         displayRightName.innerHTML = this.rightSelection.stageName;
         displayRightAlias.innerHTML = this.rightSelection.alias;
         asideRight.innerHTML = this.rightSelection.factoid;
