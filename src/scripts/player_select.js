@@ -40,13 +40,13 @@ class PlayerSelect {
         let displayRightAlias = document.getElementById('right-player-alias');
         let asideRight = document.getElementById('aside-right-blockquote');
 
-        backgroundLeft.style.backgroundImage = `url("/src/images/background/${this.leftSelection.fileName}.jpg")`;
+        backgroundLeft.style.backgroundImage = `url("./src/images/background/${this.leftSelection.fileName}.jpg")`;
         displayLeftName.innerHTML = this.leftSelection.stageName;
         displayLeftAlias.innerHTML = this.leftSelection.alias;
         asideLeft.innerHTML = this.leftSelection.factoid;
 
 
-        backgroundRight.style.backgroundImage = `/src/images/background_alt/${this.rightSelection.fileName}.jpg`;
+        backgroundRight.style.backgroundImage = `url("./src/images/background_alt/${this.rightSelection.fileName}.jpg")`;
         displayRightName.innerHTML = this.rightSelection.stageName;
         displayRightAlias.innerHTML = this.rightSelection.alias;
         asideRight.innerHTML = this.rightSelection.factoid;
