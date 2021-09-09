@@ -35,7 +35,7 @@ h6 {
     text-transform: uppercase;
 }
 
-.fab, .fas, .fa-solid{
+.fab, .fas {
     font-size: 36px;
     color: lightslategray;
     padding: 0px 5px;
@@ -308,26 +308,29 @@ footer {
     display: none;
 }
 
-/* Tooltip container */
 .tooltip {
   position: relative;
-  display: inline-block;
-  border-bottom: 1px dotted black; /* If you want dots under the hoverable text */
+  display: block;
 }
 
 /* Tooltip text */
 .tooltip .tooltiptext {
   visibility: hidden;
-  width: 120px;
-  background-color: black;
-  color: #fff;
-  text-align: center;
-  padding: 5px 0;
-  border-radius: 6px;
- 
-  /* Position the tooltip text - see examples below! */
+  width: 300px;
+  background-color: rgb(0, 0, 0, 0.9);
+  color: #ccc;
+  padding: 20px;
+  border-radius: 10px;
+  bottom: 120%;
+  left: 50%;
+  margin-left: -300px;
   position: absolute;
-  z-index: 1;
+  z-index: 2;
+  font-size: 16px;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.3em;
+  cursor: help;
+  /* font-style: italic; */
 }
 
 /* Show the tooltip text when you mouse over the tooltip container */

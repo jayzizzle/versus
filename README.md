@@ -15,7 +15,7 @@ Below is a rough draft mock-up image.
 ![Versus](/about/mockup.jpg)
 
 ## Technologies, Libraries, APIs
-* D3 for rendering charts
+* ChartJS for rendering charts
 
 ## Implementation Timeline
 * Weekend   : Research, & Data collection.
