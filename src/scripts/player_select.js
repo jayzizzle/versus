@@ -1,4 +1,3 @@
-// const PlayerStats = require('/src/scripts/player_stats');
 import PlayerStats from '/src/scripts/player_stats'
 
 class PlayerSelect {

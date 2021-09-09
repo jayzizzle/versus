@@ -1,7 +1,3 @@
-// const artists = require('/src/scripts/data');
-// const PlayerSelect = require('/src/scripts/player_select');
-// const PlayerToggle = require('/src/scripts/player_toggle');
-
 import artists from '/src/scripts/data';
 import PlayerSelect from '/src/scripts/player_select';
 import PlayerToggle from '/src/scripts/player_toggle';
