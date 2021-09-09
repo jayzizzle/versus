@@ -12,6 +12,9 @@ const artists = [
             platAlbums: 11,
             grammyWins: 0
         },
+        bestAlbum: 'All Eyez On Me',
+        bestAlbumStat: '1x Diamond',
+        totalAlbumsSold: 75,
         factoid: 'In 2014, All Eyez on Me was certified diamond 18 years after its release.'
     },
     {
@@ -27,6 +30,9 @@ const artists = [
             platAlbums: 5,
             grammyWins: 0
         },
+        bestAlbum: 'Life After Death',
+        bestAlbumStat: '1x Diamond',
+        totalAlbumsSold: 14,
         factoid: 'Biggie, Jay-Z, and Busta Rhymes all went to George Westinghouse Career and Technical Education High School in Brooklyn, New York.'
     },
     {
@@ -42,6 +48,9 @@ const artists = [
             platAlbums: 5,
             grammyWins: 4
         },
+        bestAlbum: 'Take Care',
+        bestAlbumStat: '6x Platinum',
+        totalAlbumsSold: 152,
         factoid: 'Drake holds the record for the most Billboard Hot 100 entries in one week with 20.'
     },
     {
@@ -57,6 +66,9 @@ const artists = [
             platAlbums: 10,
             grammyWins: 15
         },
+        bestAlbum: 'The Eminem Show',
+        bestAlbumStat: '1x Diamond',
+        totalAlbumsSold: 227,
         factoid: 'Eminem is the only rapper with two diamond-certified albums: The Marshall Mathers LP and The Eminem Show.'
     },
     {
@@ -72,6 +84,9 @@ const artists = [
             platAlbums: 13,
             grammyWins: 23
         },
+        bestAlbum: 'Vol 2... Hard Knock Life',
+        bestAlbumStat: '5x Platinum',
+        totalAlbumsSold: 50,
         factoid: 'Jay-Z holds the record for most #1 albums by a solo artist on the Billboard 200.'
     },
     {
@@ -87,6 +102,9 @@ const artists = [
             platAlbums: 7,
             grammyWins: 22
         },
+        bestAlbum: 'Graduation',
+        bestAlbumStat: '5x Platinum',
+        totalAlbumsSold: 21,
         factoid: 'The Life Of Pablo is the first album to be RIAA certified platinum for music streaming alone.'
     },
     {
@@ -102,6 +120,9 @@ const artists = [
             platAlbums: 9,
             grammyWins: 5
         },
+        bestAlbum: 'Tha Carter III',
+        bestAlbumStat: '6x Platinum',
+        totalAlbumsSold: 20,
         factoid: 'From 1997 to 2012, Lil Wayne recorded approximately 600 guest features.'
     },
     {
@@ -117,6 +138,9 @@ const artists = [
             platAlbums: 7,
             grammyWins: 1
         },
+        bestAlbum: 'It Was Written',
+        bestAlbumStat: '3x Platinum',
+        totalAlbumsSold: 14,
         factoid: 'Illmatic was so heavily bootlegged that MC Serch claims they found a garage with 60,000 bootleg copies before the album was even released.'
     }
 ]

@@ -16,8 +16,8 @@ h1 {
 }
 
 h2 {
-    font-family: 'Allison', cursive;
-    font-size: 148px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 64px;
     color: black;
     font-weight: bold;
     text-align: center;
@@ -58,6 +58,13 @@ h6 {
     width: 100%;
 }
 
+.flex-box-middle-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 85%;
+}
+
 .flex-box-col {
     display: flex;
     flex-direction: column;
@@ -81,7 +88,6 @@ header {
     align-items: center;
     height: 50%;
     width: 50%;
-    /* background-color: lightgreen; */
 }
 
 /* BEGIN PLAYER SECTION */
