@@ -89,7 +89,7 @@ class PlayerStats {
             data,
             plugins: [ChartDataLabels],
             options: {
-                responsive: true, // TEST THIS
+                responsive: false, // RESPONSIVE
                 indexAxis: 'y',
                 scales: {
                     x: {
@@ -115,7 +115,7 @@ class PlayerStats {
                             drawBorder: false
                         },
                         ticks: {
-                            display: false, // LEFT LABELS
+                            display: false, // HIDES LEFT LABELS
                             mirror: true
                         }
                     }

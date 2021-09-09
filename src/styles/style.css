@@ -12,20 +12,34 @@ body {
 
 h1 {
     font-family: 'Oswald', sans-serif;
-    font-size: 112px;
+    font-size: 96px;
     text-transform: uppercase;
-    padding: 5px;
+    /* padding: 5px; */
 }
 
 h2 {
-    font-family: 'Oswald', sans-serif;
+    font-family: 'Allison', cursive;
+    font-size: 148px;
+    /* color: lightcoral; */
+    color: black;
+    font-weight: bold;
+    text-align: center;
+    display: none;
+    /* text-shadow: 1px 1px lightgray; */
+}
+
+h3 {
+    font-family: 'Allison', cursive;
     font-size: 42px;
-    text-transform: uppercase;
+    font-weight: bolder;
 }
 
 h5 {
-    font-size: 24px;
+    font-family: 'Allison', cursive;
+    font-size: 32px;
+    /* font-size: 24px; */
     font-style: italic;
+    color: dimgray;
 }
 
 h6 {
@@ -55,6 +69,16 @@ h6 {
     justify-content: space-around;
     min-height: 100%;
     width: 100%;
+}
+
+/* BEGIN HEADER */
+
+header {
+    /* position: absolute; */
+    /* background-color: black; */
+    width: 100%;
+    /* opacity: 0.3; */
+    /* height: auto; */
 }
 
 /* BEGIN CHARTS */
@@ -220,25 +244,33 @@ input:checked + label {
 /* BEGIN ASIDES */
 
 aside {
-    width: 20vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 25vw;
+}
+
+#aside-left {
+    align-items: flex-end;
+    text-align: right;
+}
+
+#aside-right {
+    text-align: left;
+    align-items: flex-start;
+}
+
+blockquote {
     padding: 20px;
-    margin-top: 40px;
-    background-color: rgb(255, 255, 240, 0.5);
+    margin-top: 20px;
     font-family: 'Times New Roman', Times, serif;
     font-size: 16px;
     font-style: italic;
     line-height: 1.3em;
     border-radius: 5px;
     color: darkslategray;
-    /* text-shadow: 1px 1px white; */
-}
-
-#aside-left {
-    text-align: right;
-}
-
-#aside-right {
-    text-align: left;
+    background-color: rgb(255, 255, 240, 0.5);
+    text-shadow: 1px 1px white;
 }
 
 footer {

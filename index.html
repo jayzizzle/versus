@@ -13,6 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
     <script src="https://kit.fontawesome.com/8d252ac46c.js" crossorigin="anonymous"></script>
@@ -20,19 +22,20 @@
     <title>Versus</title>
 </head>
 <body>
-
+    
     <div class="flex-box-col">
         <header>
-            <h2>VERSUS</h2>
+            <h2>versus</h2>
         </header>
         <div class="chart-container">
-            <canvas id="chart"></canvas>
+            <canvas id="chart" width="700" height="400"></canvas>
         </div>
+        
         <div class="flex-box-row">
             <aside id="aside-left">
+                <h5 id="left-player-alias"></h5>
+                <h1 id="left-player-name"></h1>
                 <blockquote id="aside-left-blockquote">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
                 </blockquote>
             </aside>
             <div class="player-select-wrapper">
@@ -46,7 +49,7 @@
                         <input type="checkbox" name="player-toggle" id="player-toggle">
                         <label for="player-toggle"></label>
                     </div>
-                        <h6 id="h6-toggle-right">PLAYER 2</h6>
+                    <h6 id="h6-toggle-right">PLAYER 2</h6>
                 </div>
                 <footer>
                     <i class="tooltip fas fa-info-circle">
@@ -61,9 +64,9 @@
                 </footer>
             </div>
             <aside id="aside-right">
+                <h5 id="right-player-alias"></h5>
+                <h1 id="right-player-name"></h1>
                 <blockquote id="aside-right-blockquote">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua.
                 </blockquote>
             </aside>
         </div>
@@ -72,12 +75,8 @@
 
     <div class="player-container">
         <section id="player-side-left" class="player-side">
-            <h1 id="left-player-name"></h1>
-            <h5 id="left-player-alias"></h5>
         </section>
         <section id="player-side-right" class="player-side">
-            <h1 id="right-player-name"></h1>
-            <h5 id="right-player-alias"></h5>
         </section>
     </div>
 
