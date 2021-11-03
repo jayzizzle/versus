@@ -13,6 +13,7 @@ In Versus, users will be able to:
 * select two music artists to compare
 * observe interactive graphs
 * enjoy visual data and images that dynamically change via mouse hover
+* Designed primarily using Vanilla DOM Javascript
 
 <img src="src/images/ss02.png" alt="Versus">
 
