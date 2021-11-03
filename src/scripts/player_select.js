@@ -1,149 +1,157 @@
-import PlayerStats from '/src/scripts/player_stats'
+import PlayerStats from '/src/scripts/player_stats';
 
 class PlayerSelect {
-    constructor(ul, artists) {
+  constructor(ul, artists) {
+    this.ele = ul;
+    this.artists = artists;
+    this.leftSelection = artists[0];
+    this.rightSelection = artists[1];
+    this.currentSide = 'left';
 
-        this.ele = ul;
-        this.artists = artists;
-        this.leftSelection = artists[0];
-        this.rightSelection = artists[1];
-        this.currentSide = 'left'
+    this.playerStats = new PlayerStats(this, this.artists);
 
-        this.playerStats = new PlayerStats(this, this.artists);
-
-        for (let i = 0; i < artists.length; i++) {
-            let artist = artists[i];
-            let box = document.createElement('li');
-            box.setAttribute('id', '');
-            box.setAttribute('class', 'li-player-select')
-            box.setAttribute('data-id', i);
-            box.style.backgroundImage = `url("./src/images/selection/${artist.fileName}.jpg")`;
-            ul.append(box);
-        }
-
-        this.setDefault();
-
-        ul.addEventListener('click', this.handleClick.bind(this));
-        ul.addEventListener('mouseover', this.handleMouseOn.bind(this));
-        ul.addEventListener('mouseout', this.handleMouseOut.bind(this));
+    for (let i = 0; i < artists.length; i++) {
+      let artist = artists[i];
+      let box = document.createElement('li');
+      box.setAttribute('id', '');
+      box.setAttribute('class', 'li-player-select');
+      box.setAttribute('data-id', i);
+      box.style.backgroundImage = `url("./src/images/selection/${artist.fileName}.jpg")`;
+      ul.append(box);
     }
 
-    setDefault() {
-        let backgroundLeft = document.getElementById('player-side-left')
-        let displayLeftName = document.getElementById('left-player-name');
-        let displayLeftAlias = document.getElementById('left-player-alias');
-        let asideLeft = document.getElementById('aside-left-blockquote');
+    this.setDefault();
 
-        let backgroundRight = document.getElementById('player-side-right')
-        let displayRightName = document.getElementById('right-player-name');
-        let displayRightAlias = document.getElementById('right-player-alias');
-        let asideRight = document.getElementById('aside-right-blockquote');
+    ul.addEventListener('click', this.handleClick.bind(this));
+    ul.addEventListener('mouseover', this.handleMouseOn.bind(this));
+    ul.addEventListener('mouseout', this.handleMouseOut.bind(this));
+  }
 
-        backgroundLeft.style.backgroundImage = `url("./src/images/background/${this.leftSelection.fileName}.jpg")`;
-        displayLeftName.innerHTML = this.leftSelection.stageName;
-        displayLeftAlias.innerHTML = this.leftSelection.alias;
-        asideLeft.innerHTML = this.leftSelection.factoid;
+  setDefault() {
+    let backgroundLeft = document.getElementById('player-side-left');
+    let displayLeftName = document.getElementById('left-player-name');
+    let displayLeftAlias = document.getElementById('left-player-alias');
+    let asideLeft = document.getElementById('aside-left-blockquote');
 
+    let backgroundRight = document.getElementById('player-side-right');
+    let displayRightName = document.getElementById('right-player-name');
+    let displayRightAlias = document.getElementById('right-player-alias');
+    let asideRight = document.getElementById('aside-right-blockquote');
 
-        backgroundRight.style.backgroundImage = `url("./src/images/background_alt/${this.rightSelection.fileName}.jpg")`;
-        displayRightName.innerHTML = this.rightSelection.stageName;
-        displayRightAlias.innerHTML = this.rightSelection.alias;
-        asideRight.innerHTML = this.rightSelection.factoid;
+    backgroundLeft.style.backgroundImage = `url("./src/images/background/${this.leftSelection.fileName}.jpg")`;
+    displayLeftName.innerHTML = this.leftSelection.stageName;
+    displayLeftAlias.innerHTML = this.leftSelection.alias;
+    asideLeft.innerHTML = this.leftSelection.factoid;
 
-        const list = document.getElementsByClassName('li-player-select');
+    backgroundRight.style.backgroundImage = `url("./src/images/background_alt/${this.rightSelection.fileName}.jpg")`;
+    displayRightName.innerHTML = this.rightSelection.stageName;
+    displayRightAlias.innerHTML = this.rightSelection.alias;
+    asideRight.innerHTML = this.rightSelection.factoid;
 
-        list[this.leftSelection.id].id = 'left-selection';
-        list[this.rightSelection.id].id = 'right-selection';
+    const list = document.getElementsByClassName('li-player-select');
+
+    list[this.leftSelection.id].id = 'left-selection';
+    list[this.rightSelection.id].id = 'right-selection';
+  }
+
+  handleClick(e) {
+    e.stopPropagation();
+    let ele = e.target;
+    if (ele.tagName === 'I') ele = ele.parentNode;
+    if (ele.tagName === 'LI' && !this.isCurrentlySelected(ele)) {
+      this.swapSelection(ele);
+      this.refreshChart();
+    }
+  }
+
+  swapSelection(ele) {
+    let oldSelection = this.currentSideSelection();
+    oldSelection.id = '';
+
+    ele.id = `${this.currentSide}-selection`;
+    const artist = this.artists[ele.dataset.id];
+
+    if (this.currentSide === 'left') {
+      this.leftSelection = artist;
+    } else {
+      this.rightSelection = artist;
+    }
+  }
+
+  refreshChart(
+    leftPlayer = this.leftSelection,
+    rightPlayer = this.rightSelection
+  ) {
+    this.playerStats.updateChart(leftPlayer, rightPlayer);
+  }
+
+  handleMouseOn(e) {
+    e.stopPropagation();
+    let ele = e.target;
+
+    if (
+      ele.tagName === 'LI' &&
+      ele !== this.currentSideSelection() &&
+      ele !== this.oppositeSideSelection()
+    ) {
+      this.mouseOnActions(ele);
+    }
+  }
+
+  mouseOnActions(ele) {
+    let artist = this.artists[ele.dataset.id];
+
+    let backgroundImg = document.getElementById(
+      `player-side-${this.currentSide}`
+    );
+    let displayName = document.getElementById(
+      `${this.currentSide}-player-name`
+    );
+    let displayAlias = document.getElementById(
+      `${this.currentSide}-player-alias`
+    );
+    let aside = document.getElementById(`aside-${this.currentSide}-blockquote`);
+
+    if (this.currentSide === 'left') {
+      backgroundImg.style.backgroundImage = `url("./src/images/background/${artist.fileName}.jpg")`;
+    } else if (this.currentSide === 'right') {
+      backgroundImg.style.backgroundImage = `url("./src/images/background_alt/${artist.fileName}.jpg")`;
     }
 
-    handleClick(e) {
-        e.stopPropagation();
-        let ele = e.target;
-        if (ele.tagName === 'I') ele = ele.parentNode;
-        if (ele.tagName === 'LI' && !this.isCurrentlySelected(ele)) {
-            this.swapSelection(ele);
-            this.refreshChart();
-        }
+    displayName.innerHTML = artist.stageName;
+    displayAlias.innerHTML = artist.alias;
+    aside.innerHTML = artist.factoid;
+
+    if (this.currentSide === 'left') {
+      this.playerStats.updateLeft(artist);
+    } else {
+      this.playerStats.updateRight(artist);
     }
+  }
 
-    swapSelection(ele) {
-        let oldSelection = this.currentSideSelection();
-        oldSelection.id = '';
+  handleMouseOut(e) {
+    e.stopPropagation();
+    this.setDefault();
+    this.refreshChart();
+  }
 
-        ele.id = `${this.currentSide}-selection`;
-        const artist = this.artists[ele.dataset.id];
+  currentSideSelection() {
+    return document.getElementById(`${this.currentSide}-selection`);
+  }
 
-        if (this.currentSide === 'left') {
-            this.leftSelection = artist;
-        } else {
-            this.rightSelection = artist;
-        }
-    }
+  oppositeSide() {
+    if (!this.currentSide) return;
+    return this.currentSide === 'left' ? 'right' : 'left';
+  }
 
-    refreshChart(leftPlayer = this.leftSelection, rightPlayer = this.rightSelection) {
-        this.playerStats.updateChart(leftPlayer, rightPlayer);
-    }
+  oppositeSideSelection() {
+    let oppSide = this.oppositeSide();
+    return document.getElementById(`${oppSide}-selection`);
+  }
 
-    handleMouseOn(e) {
-        e.stopPropagation();
-        let ele = e.target;
-
-        if (ele.tagName === 'LI' &&
-            ele !== this.currentSideSelection() &&
-            ele !== this.oppositeSideSelection()) {
-            this.mouseOnActions(ele);
-        }
-    }
-
-    mouseOnActions(ele) {
-        let artist = this.artists[ele.dataset.id];
-
-        let backgroundImg = document.getElementById(`player-side-${this.currentSide}`)
-        let displayName = document.getElementById(`${this.currentSide}-player-name`);
-        let displayAlias = document.getElementById(`${this.currentSide}-player-alias`);
-        let aside = document.getElementById(`aside-${this.currentSide}-blockquote`);
-
-        if (this.currentSide === 'left') {
-            backgroundImg.style.backgroundImage = `url("./src/images/background/${artist.fileName}.jpg")`
-        } else if (this.currentSide === 'right') {
-            backgroundImg.style.backgroundImage = `url("./src/images/background_alt/${artist.fileName}.jpg")`
-        }
-
-        displayName.innerHTML = artist.stageName;
-        displayAlias.innerHTML = artist.alias;
-        aside.innerHTML = artist.factoid;
-
-        if (this.currentSide === 'left') {
-            this.playerStats.updateLeft(artist);
-        } else {
-            this.playerStats.updateRight(artist);
-        }
-    }
-
-    handleMouseOut(e) {
-        e.stopPropagation();
-        this.setDefault();
-        this.refreshChart();
-    }
-
-    currentSideSelection() {
-        return document.getElementById(`${this.currentSide}-selection`);
-    }
-
-    oppositeSide() {
-        if (!this.currentSide) return;
-        return this.currentSide === 'left' ? 'right' : 'left';
-    }
-
-    oppositeSideSelection() {
-        let oppSide = this.oppositeSide();
-        return document.getElementById(`${oppSide}-selection`);
-    }
-
-    isCurrentlySelected(ele) {
-        return ele.id === 'left-selection' || ele.id === 'right-selection'
-    }
-
+  isCurrentlySelected(ele) {
+    return ele.id === 'left-selection' || ele.id === 'right-selection';
+  }
 }
 
 export default PlayerSelect;
