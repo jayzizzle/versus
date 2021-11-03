@@ -7,8 +7,6 @@
 
 Versus aims to compare two musical artists within the visual format of a character select screen. Users will be able to choose from a pool of artists and see their head-to-head stats in a dynamic and interactive way.
 
-<img src="src/images/ss00.png" alt="Artist Select">
-
 ## Functionality & MVPs
 
 In Versus, users will be able to:
@@ -46,6 +44,9 @@ handleToggle(e) {
     }
 }
 ```
+
+
+<img src="src/images/ss00.png" alt="Artist Select">
 
 * Using only Vanilla DOM Javascript, I created a toggle switch to swap between sides. It also creates a color change that fades to the color of the accompanying side.
 
