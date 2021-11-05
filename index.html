@@ -1,89 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="apple-touch-icon" sizes="180x180" href="src/images/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="src/images/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="src/images/favicon-16x16.png">
+  <head>
+    <meta property="og:title" content="Versus" />
+    <meta property="og:image" content="src/images/versus.gif" />
+    <meta
+      property="og:description"
+      content="
+        Versus compares two artists within the visual format of a character select screen. 
+        Users choose from a pool of artists to see their head-to-head stats in a dynamic and interactive way.
+      "
+    />
+    <meta property="og:url" content="https://jayzizzle.github.io/versus/" />
+
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="src/images/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="src/images/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="src/images/favicon-16x16.png"
+    />
     <link rel="stylesheet" href="./src/styles/reset.css" />
     <link rel="stylesheet" href="./dist/main.css" />
     <link rel="stylesheet" href="./src/styles/style.css" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Allison&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Oswald:wght@500&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Allison&display=swap"
+      rel="stylesheet"
+    />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.5.1/dist/chart.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels@2.0.0"></script>
-    <script src="https://kit.fontawesome.com/8d252ac46c.js" crossorigin="anonymous"></script>
+    <script
+      src="https://kit.fontawesome.com/8d252ac46c.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="./dist/main.js"></script>
     <title>Versus</title>
-</head>
-<body>
-    
+  </head>
+  <body>
     <div class="flex-box-col">
-        <header>
-            <h2>VERSUS PROJECT</h2> <!-- THIS IS HIDDEN -->
-        </header>
-        <div class="flex-box-middle-row">
-            <h3></h3>
-            <div class="chart-container">
-                <canvas id="chart" width="700" height="400"></canvas>
-            </div>
-            <h3></h3>
+      <header>
+        <h2>VERSUS PROJECT</h2>
+        <!-- THIS IS HIDDEN -->
+      </header>
+      <div class="flex-box-middle-row">
+        <h3></h3>
+        <div class="chart-container">
+          <canvas id="chart" width="700" height="400"></canvas>
         </div>
-        
-        <div class="flex-box-row">
-            <aside id="aside-left">
-                <h5 id="left-player-alias"></h5>
-                <h1 id="left-player-name"></h1>
-                <blockquote id="aside-left-blockquote">
-                </blockquote>
-            </aside>
-            <div class="player-select-wrapper">
-                <h3 id="versus-select" class="lightcoral">versus</h3>
-                <nav class="player-select">
-                    <ul id="ul-player-select">
-                    </ul>
-                </nav>
-                <div class="toggle-wrapper">
-                    <h6 id="h6-toggle-left">PLAYER 1</h6>
-                    <div class="switch-wrapper">
-                        <input type="checkbox" name="player-toggle" id="player-toggle">
-                        <label for="player-toggle"></label>
-                    </div>
-                    <h6 id="h6-toggle-right">PLAYER 2</h6>
-                </div>
-                <footer>
-                    <i class="tooltip fas fa-info-circle">
-                        <span class="tooltiptext">
-                            Data was collected from the following websites: wikipedia.com, billboard.com, & grammy.com. 
-                            *Platinum albums and singles were only counted if the artist was the lead.
-                        </span>
-                    </i>
-                    <a href="https://www.linkedin.com/in/jon-zamora-97a8a6219/" target="_blank"><i class="fab fa-linkedin"></i></a>
-                    <a href="https://github.com/jayzizzle" target="_blank"><i class="fab fa-github-square"></i></a>
-                    <a href="https://www.mixcloud.com/jonzamora/" target="_blank"><i class="fas fa-compact-disc"></i></a>
-                </footer>
-            </div>
-            <aside id="aside-right">
-                <h5 id="right-player-alias"></h5>
-                <h1 id="right-player-name"></h1>
-                <blockquote id="aside-right-blockquote">
-                </blockquote>
-            </aside>
-        </div>
+        <h3></h3>
+      </div>
 
+      <div class="flex-box-row">
+        <aside id="aside-left">
+          <h5 id="left-player-alias"></h5>
+          <h1 id="left-player-name"></h1>
+          <blockquote id="aside-left-blockquote"></blockquote>
+        </aside>
+        <div class="player-select-wrapper">
+          <h3 id="versus-select" class="lightcoral">versus</h3>
+          <nav class="player-select">
+            <ul id="ul-player-select"></ul>
+          </nav>
+          <div class="toggle-wrapper">
+            <h6 id="h6-toggle-left">PLAYER 1</h6>
+            <div class="switch-wrapper">
+              <input type="checkbox" name="player-toggle" id="player-toggle" />
+              <label for="player-toggle"></label>
+            </div>
+            <h6 id="h6-toggle-right">PLAYER 2</h6>
+          </div>
+          <footer>
+            <i class="tooltip fas fa-info-circle">
+              <span class="tooltiptext">
+                Data was collected from the following websites: wikipedia.com,
+                billboard.com, & grammy.com. *Platinum albums and singles were
+                only counted if the artist was the lead.
+              </span>
+            </i>
+            <a
+              href="https://www.linkedin.com/in/jon-zamora-97a8a6219/"
+              target="_blank"
+              ><i class="fab fa-linkedin"></i
+            ></a>
+            <a href="https://github.com/jayzizzle" target="_blank"
+              ><i class="fab fa-github-square"></i
+            ></a>
+            <a href="https://www.mixcloud.com/jonzamora/" target="_blank"
+              ><i class="fas fa-compact-disc"></i
+            ></a>
+          </footer>
+        </div>
+        <aside id="aside-right">
+          <h5 id="right-player-alias"></h5>
+          <h1 id="right-player-name"></h1>
+          <blockquote id="aside-right-blockquote"></blockquote>
+        </aside>
+      </div>
     </div>
 
     <div class="player-container">
-        <section id="player-side-left" class="player-side">
-        </section>
-        <section id="player-side-right" class="player-side">
-        </section>
+      <section id="player-side-left" class="player-side"></section>
+      <section id="player-side-right" class="player-side"></section>
     </div>
-
-</body>
+  </body>
 </html>
